@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Rosalyn Live Chat" />
+    <meta name="author" content="Rosalyn Live Chat" />
+    <meta name="keywords" content="Rosalyn Live Chat" />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#9D00EC" />
+    <meta name="copyright" content="Rosalyn Group" />
+    <!-- Metatag Open Graph (OG) untuk media sosial -->
+    <meta property="og:site_name" content="Rosalyn Live Chat" />
+    <meta property="og:title" content="Rosalyn Live Chat | Rosalyn Group" />
+    <meta name="description" content="Rosalyn Live Chat" />
+    <meta property="og:image" content="https://telegra.ph/file/533e49d586d6c9f1adcd5.jpg"/>
+    <!-- URL gambar thumbnail situs Anda -->
+    <meta property="og:url" content="https://rosalyn.my.id" />
+    <meta property="og:type" content="website" />
+
+    <!-- Metatag Twitter Card untuk Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@Rosalyn" />
+    <meta name="twitter:title" content="Rosalyn Live Chat | Rosalyn Group" />
+    <meta name="twitter:description" content="Rosalyn Live Chat"/>
+    <meta name="twitter:image" content="https://telegra.ph/file/6487a3ece3602715b3aaa.png"/>
+    <title>Create Room Live Chat | Maelyn Live Chat</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #2a2a2a;
+        color: #ffffff;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+
+      .container {
+        text-align: center;
+        background-color: #372d48;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        width: 80%;
+        max-width: 400px;
+      }
+
+      h1 {
+        color: #a485bb;
+        margin-bottom: 20px;
+      }
+
+      .room-form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      label {
+        font-size: 18px;
+        color: #ffffff;
+        margin-bottom: 10px;
+      }
+
+      input[type="text"] {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 20px;
+        border: 1px solid #a485bb;
+        border-radius: 5px;
+        font-size: 16px;
+        background-color: #483d5b;
+        color: #ffffff;
+        box-sizing: border-box;
+      }
+
+      button {
+        padding: 12px 24px;
+        border: none;
+        border-radius: 5px;
+        background-color: #a485bb;
+        color: #ffffff;
+        font-size: 18px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      button:hover {
+        background-color: #7f5b8e;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Create a Chat Room</h1>
+      <form action="/chat" method="GET" class="room-form">
+        <label for="roomId">Enter Room ID:</label>
+        <input type="text" id="roomId" name="id" required />
+        <button type="submit">Enter Chat Room</button>
+      </form>
+    </div>
+  </body>
+</html>

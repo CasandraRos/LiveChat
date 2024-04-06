@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Room | Maelyn Live Chat</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="chat">
+        <div id="usernameInput">
+            <label for="username">Enter your username:</label>
+            <input type="text" id="username" required>
+            <button onclick="submitUsername()">Join Chat</button>
+        </div>
+
+        <div id="messagesContainer" style="display: none; overflow-y: auto;">
+            <div id="messages"></div>
+        </div>
+
+        <form id="messageForm" style="display: none;">
+            <input type="text" id="messageInput" placeholder="Type your message..." autocomplete="off" required>
+            <button type="submit">Send</button>
+        </form>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        const socket = io();
+        let username;
+
+        function submitUsername() {
+            username = document.getElementById('username').value.trim();
+            if (username !== '') {
+                document.getElementById('usernameInput').style.display = 'none';
+                document.getElementById('messagesContainer').style.display = 'block';
+                document.getElementById('messageForm').style.display = 'flex';
+                socket.emit('join', roomId, username);
+            }
+        }
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const roomId = urlParams.get('id');
+
+        const messagesContainer = document.getElementById('messagesContainer');
+
+        function addMessageToChat(username, message) {
+            const messageElement = document.createElement('div');
+            messageElement.innerHTML = `<strong>${username}:</strong> ${message}`;
+            messagesContainer.querySelector('#messages').appendChild(messageElement);
+
+            // Auto scroll ke pesan terbaru
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+
+        const messageForm = document.getElementById('messageForm');
+        const messageInput = document.getElementById('messageInput');
+
+        messageForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const message = messageInput.value.trim();
+            if (message !== '') {
+                socket.emit('chatMessage', message);
+                messageInput.value = '';
+            }
+        });
+
+        socket.on('chatMessage', ({ username, message }) => {
+            addMessageToChat(username, message);
+        });
+
+        socket.on('invalidUsername', () => {
+            alert('Please enter a valid username to join the chat.');
+        });
+    </script>
+</body>
+</html>
