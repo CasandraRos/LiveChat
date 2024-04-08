@@ -1,15 +1,21 @@
-bashCopy code
-# Use the official Node.js image as the base image
+# Use the official Node.js image with specified version (18)
 FROM node:18
 
-# Set the working directory in the container
+# Set the working directory inside the container
 WORKDIR /app
 
-# Copy the application files into the working directory
-COPY . /app
+# Copy package.json and package-lock.json separately to leverage Docker cache
+COPY package*.json ./
 
-# Install the application dependencies
+# Install application dependencies
 RUN npm install
 
-# Define the entry point for the container
+# Copy the rest of the application files
+COPY . .
+
+# Expose the port on which the app runs (if needed)
+# EXPOSE 3000
+
+# Command to run the application
 CMD ["npm", "start"]
+
