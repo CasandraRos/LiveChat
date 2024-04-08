@@ -1,4 +1,4 @@
-# Use the official Node.js image with specified version (18)
+# Use the official Node.js image as the base image
 FROM node:18
 
 # Set the working directory inside the container
@@ -8,14 +8,14 @@ WORKDIR /app
 COPY package*.json ./
 
 # Install application dependencies
-RUN npm install
+RUN npm install --production
 
 # Copy the rest of the application files
 COPY . .
 
 # Expose the port on which the app runs (if needed)
-# EXPOSE 3000
+# Adjust the port number as per your Express.js app configuration
+EXPOSE 3000
 
 # Command to run the application
-CMD ["npm", "start"]
-
+CMD ["node", "index.js"]
